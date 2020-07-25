@@ -52,5 +52,6 @@
     <module>spring-rocketmq</module>
     <module>lab-springmvc-23-01</module>
     <module>lab-26-distributed-session-01</module>
+    <module>spring-actuator</module>
   </modules>
 </project>

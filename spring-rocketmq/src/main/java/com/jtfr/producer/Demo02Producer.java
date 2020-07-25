@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,20 @@ public class Demo02Producer {
         }
         // 同步批量发送消息
         return rocketMQTemplate.syncSend(Demo02Message.TOPIC, messages, 30 * 1000L);
+    }
+    
+    public void asyncSendBatch(Collection<Integer> ids, SendCallback callback) {
+        // <X> 创建多条 Demo02Message 消息
+        List<Message> messages = new ArrayList<>(ids.size());
+        for (Integer id : ids) {
+            // 创建 Demo02Message 消息
+            Demo02Message message = new Demo02Message();
+            message.setId(id);
+            // 构建 Spring Messaging 定义的 Message 消息
+            messages.add(MessageBuilder.withPayload(message).build());
+        }
+        // 同步批量发送消息
+        rocketMQTemplate.asyncSend(Demo02Message.TOPIC, messages, callback);
     }
 
 }

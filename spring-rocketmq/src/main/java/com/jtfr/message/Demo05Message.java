@@ -1,8 +1,8 @@
 package com.jtfr.message;
 
-public class Demo03Message {
+public class Demo05Message {
 
-    public static final String TOPIC = "DEMO_03";
+    public static final String TOPIC = "DEMO_05";
 
     /**
      * 编号
@@ -13,7 +13,7 @@ public class Demo03Message {
         return id;
     }
 
-    public Demo03Message setId(Integer id) {
+    public Demo05Message setId(Integer id) {
         this.id = id;
         return this;
     }
